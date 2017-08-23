@@ -114,7 +114,7 @@ private[immutable] abstract class LongMapIterator[V, T](it: LongMap[V]) extends 
       case LongMap.Bin(_, _, left, right) => {
         push(right)
         push(left)
-        next
+        next()
       }
       case t@LongMap.Tip(_, _) => valueOf(t)
       // This should never happen. We don't allow LongMap.Nil in subtrees of the LongMap

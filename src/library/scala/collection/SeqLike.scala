@@ -308,7 +308,7 @@ trait SeqLike[+A, +Repr] extends Any with IterableLike[A, Repr] with GenSeqLike[
     val i = this.iterator drop offset
     val j = that.iterator
     while (j.hasNext && i.hasNext)
-      if (i.next != j.next)
+      if (i.next() != j.next())
         return false
 
     !j.hasNext
@@ -318,7 +318,7 @@ trait SeqLike[+A, +Repr] extends Any with IterableLike[A, Repr] with GenSeqLike[
     val i = this.iterator.drop(length - that.length)
     val j = that.iterator
     while (i.hasNext && j.hasNext)
-      if (i.next != j.next)
+      if (i.next() != j.next())
         return false
 
     !j.hasNext

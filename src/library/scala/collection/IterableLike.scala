@@ -115,7 +115,7 @@ self =>
       var i = 0
       val it = iterator drop lo
       while (i < elems && it.hasNext) {
-        b += it.next
+        b += it.next()
         i += 1
       }
       b.result()
@@ -131,7 +131,7 @@ self =>
       var i = 0
       val it = iterator
       while (i < n && it.hasNext) {
-        b += it.next
+        b += it.next()
         i += 1
       }
       b.result()
@@ -239,7 +239,7 @@ self =>
     val lead = iterator drop n
     val it = iterator
     while (lead.hasNext) {
-      b += it.next
+      b += it.next()
       lead.next()
     }
     b.result()
@@ -291,7 +291,7 @@ self =>
     val these = this.iterator
     val those = that.iterator
     while (these.hasNext && those.hasNext)
-      if (these.next != those.next)
+      if (these.next() != those.next())
         return false
 
     !these.hasNext && !those.hasNext

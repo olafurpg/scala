@@ -83,7 +83,7 @@ self =>
     else {
       val vb = Vector.newBuilder[A]
       foreach(vb += _)
-      vb.result
+      vb.result()
     }
   }
 

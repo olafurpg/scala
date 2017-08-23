@@ -176,7 +176,7 @@ private[collection] trait Wrappers {
     }
 
     override def entrySet: ju.Set[ju.Map.Entry[A, B]] = new ju.AbstractSet[ju.Map.Entry[A, B]] {
-      def size = self.size
+      def size = self.size()
 
       def iterator = new ju.Iterator[ju.Map.Entry[A, B]] {
         val ui = underlying.iterator

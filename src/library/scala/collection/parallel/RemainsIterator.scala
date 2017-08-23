@@ -448,7 +448,7 @@ self =>
   private[collection] def newSliceInternal[U <: Taken](it: U, from1: Int): U = {
     var count = from1
     while (count > 0 && it.hasNext) {
-      it.next
+      it.next()
       count -= 1
     }
     it
@@ -665,7 +665,7 @@ self =>
       (pits(0).appendParSeq[U, SeqSplitter[U]](patch)) appendParSeq pits(2)
     }
     def hasNext = trio.hasNext
-    def next = trio.next
+    def next = trio.next()
     def remaining = trio.remaining
     def dup = self.dup.patchParSeq(from, patch, replaced)
     def split = trio.split

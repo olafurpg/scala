@@ -142,7 +142,7 @@ trait TraversableOnce[+A] extends Any with GenTraversableOnce[A] {
     // (Tested to be lower-overhead than runWith.  Would be better yet to not need to (formally) allocate it--change in 2.12.)
     val sentinel: Function1[A, Any] = new scala.runtime.AbstractFunction1[A, Any]{ def apply(a: A) = this }
     while (i.hasNext) {
-      val x = pf.applyOrElse(i.next, sentinel)
+      val x = pf.applyOrElse(i.next(), sentinel)
       if (x.asInstanceOf[AnyRef] ne sentinel) return Some(x.asInstanceOf[B])
     }
     None

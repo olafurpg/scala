@@ -53,8 +53,8 @@ package object parallel {
       else {
         val it = t.toIterator
         val cb = mutable.ParArrayCombiner[T]()
-        while (it.hasNext) cb += it.next
-        cb.result
+        while (it.hasNext) cb += it.next()
+        cb.result()
       }
     }
   }

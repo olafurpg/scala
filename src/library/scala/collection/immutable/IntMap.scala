@@ -122,7 +122,7 @@ private[immutable] abstract class IntMapIterator[V, T](it: IntMap[V]) extends Ab
       case IntMap.Bin(_, _, left, right) => {
         push(right)
         push(left)
-        next
+        next()
       }
       case t@IntMap.Tip(_, _) => valueOf(t)
       // This should never happen. We don't allow IntMap.Nil in subtrees of the IntMap

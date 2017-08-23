@@ -200,8 +200,8 @@ extends AbstractSeq[T] with IndexedSeq[T] with Serializable {
       else if (num eq scala.math.Numeric.LongIsIntegral) {
         // Uh-oh, might be overflow, so we have to divide before we overflow.
         // Either numRangeElements or (head + last) must be even, so divide the even one before multiplying
-        val a = head.toLong
-        val b = last.toLong
+        val a = head.toLong()
+        val b = last.toLong()
         val ans =
           if ((numRangeElements & 1) == 0) (numRangeElements / 2) * (a + b)
           else numRangeElements * {
@@ -217,8 +217,8 @@ extends AbstractSeq[T] with IndexedSeq[T] with Serializable {
         // Try to compute sum with reasonable accuracy, avoiding over/underflow
         val numAsIntegral = num.asInstanceOf[Integral[B]]
         import numAsIntegral._
-        val a = math.abs(head.toDouble)
-        val b = math.abs(last.toDouble)
+        val a = math.abs(head.toDouble())
+        val b = math.abs(last.toDouble())
         val two = num fromInt 2
         val nre = num fromInt numRangeElements
         if (a > 1e38 || b > 1e38) nre * ((head / two) + (last / two))  // Compute in parts to avoid Infinity if possible

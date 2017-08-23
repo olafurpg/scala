@@ -480,7 +480,7 @@ object AnyRefMap {
     val arm = new AnyRefMap[K, V](sz * 2)
     val ki = keys.iterator
     val vi = values.iterator
-    while (ki.hasNext && vi.hasNext) arm(ki.next) = vi.next
+    while (ki.hasNext && vi.hasNext) arm(ki.next()) = vi.next()
     if (arm.size < (sz >> 3)) arm.repack()
     arm
   }

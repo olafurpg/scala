@@ -327,21 +327,21 @@ final class BigInt(val bigInteger: BigInteger)
    *  Note that this conversion can lose information about the overall magnitude of the
    *  BigInt value as well as return a result with the opposite sign.
    */
-  override def byteValue   = intValue.toByte
+  override def byteValue   = intValue().toByte
 
   /** Converts this BigInt to a <tt>short</tt>.
    *  If the BigInt is too big to fit in a short, only the low-order 16 bits are returned.
    *  Note that this conversion can lose information about the overall magnitude of the
    *  BigInt value as well as return a result with the opposite sign.
    */
-  override def shortValue  = intValue.toShort
+  override def shortValue  = intValue().toShort
 
   /** Converts this BigInt to a <tt>char</tt>.
    *  If the BigInt is too big to fit in a char, only the low-order 16 bits are returned.
    *  Note that this conversion can lose information about the overall magnitude of the
    *  BigInt value and that it always returns a positive result.
    */
-  def charValue   = intValue.toChar
+  def charValue   = intValue().toChar
 
   /** Converts this BigInt to an <tt>int</tt>.
    *  If the BigInt is too big to fit in an int, only the low-order 32 bits

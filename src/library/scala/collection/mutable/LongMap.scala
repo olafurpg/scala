@@ -568,7 +568,7 @@ object LongMap {
     val lm = new LongMap[V](sz * 2)
     val ki = keys.iterator
     val vi = values.iterator
-    while (ki.hasNext && vi.hasNext) lm(ki.next) = vi.next
+    while (ki.hasNext && vi.hasNext) lm(ki.next()) = vi.next()
     if (lm.size < (sz >> 3)) lm.repack()
     lm
   }

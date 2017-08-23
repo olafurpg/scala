@@ -658,7 +658,7 @@ trait Iterator[+A] extends TraversableOnce[A] {
       val lookahead = new mutable.Queue[A]
       def skip() =
         while (self.hasNext && !p(self.head)) {
-          other.lookahead += self.next
+          other.lookahead += self.next()
         }
       def hasNext = !lookahead.isEmpty || { skip(); self.hasNext }
       def next() = if (!lookahead.isEmpty) lookahead.dequeue()
@@ -1144,7 +1144,7 @@ trait Iterator[+A] extends TraversableOnce[A] {
       // The order of terms in the following condition is important
       // here as self.hasNext could be blocking
       while (i < size && self.hasNext) {
-        buf += self.next
+        buf += self.next()
         i += 1
       }
       buf
@@ -1391,7 +1391,7 @@ trait Iterator[+A] extends TraversableOnce[A] {
    */
   def sameElements(that: Iterator[_]): Boolean = {
     while (hasNext && that.hasNext)
-      if (next != that.next)
+      if (next != that.next())
         return false
 
     !hasNext && !that.hasNext

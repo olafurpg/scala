@@ -333,7 +333,7 @@ self =>
       // Default appropriate for immutable collections; mutable collections override this
       val vb = Vector.newBuilder[(K, V)]
       foreach(vb += _)
-      vb.result
+      vb.result()
     }
   }
 

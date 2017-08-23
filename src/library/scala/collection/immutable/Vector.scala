@@ -228,7 +228,7 @@ extends AbstractSeq[A]
           case n if this.size < (n >>> Log2ConcatFaster) && again.isInstanceOf[Vector[_]] =>
             var v = again.asInstanceOf[Vector[B]]
             val ri = this.reverseIterator
-            while (ri.hasNext) v = ri.next +: v
+            while (ri.hasNext) v = ri.next() +: v
             v.asInstanceOf[That]
           case _ => super.++(again)
         }

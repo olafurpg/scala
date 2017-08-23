@@ -81,7 +81,7 @@ class Script[A] extends ArrayBuffer[Message[A]] with Message[A] {
     while (it.hasNext) {
       if (i > 1)
         res = res + ", "
-      res = res + "[" + i + "] " + it.next
+      res = res + "[" + i + "] " + it.next()
       i += 1
     }
     res + ")"

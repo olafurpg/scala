@@ -29,3 +29,5 @@ libraryDependencies ++= Seq(
 concurrentRestrictions in Global := Seq(
   Tags.limitAll(1) // workaround for https://github.com/sbt/sbt/issues/2970
 )
+
+addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.5-SNAPSHOT")

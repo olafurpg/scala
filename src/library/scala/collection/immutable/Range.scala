@@ -498,10 +498,10 @@ object Range {
     def toBD(x: Double): BigDecimal = scala.math.BigDecimal valueOf x
 
     def apply(start: Double, end: Double, step: Double) =
-      BigDecimal(toBD(start), toBD(end), toBD(step)) mapRange (_.doubleValue)
+      BigDecimal(toBD(start), toBD(end), toBD(step)) mapRange (_.doubleValue())
 
     def inclusive(start: Double, end: Double, step: Double) =
-      BigDecimal.inclusive(toBD(start), toBD(end), toBD(step)) mapRange (_.doubleValue)
+      BigDecimal.inclusive(toBD(start), toBD(end), toBD(step)) mapRange (_.doubleValue())
   }
 
   // As there is no appealing default step size for not-really-integral ranges,

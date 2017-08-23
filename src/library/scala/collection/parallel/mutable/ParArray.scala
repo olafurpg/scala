@@ -366,7 +366,7 @@ self =>
     override def sameElements(that: Iterator[_]): Boolean = {
       var same = true
       while (i < until && that.hasNext) {
-        if (arr(i) != that.next) {
+        if (arr(i) != that.next()) {
           i = until
           same = false
         }
@@ -713,7 +713,7 @@ object ParArray extends ParFactory[ParArray] {
     for (xs <- xss) {
       cb ++= xs.seq
     }
-    cb.result
+    cb.result()
   }
 
 }

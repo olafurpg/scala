@@ -415,8 +415,8 @@ extends ScalaNumber with ScalaNumericConversions with Serializable with Ordered[
   private final var computedHashCode: Int = BigDecimal.hashCodeNotComputed
   private final def computeHashCode(): Unit = {
     computedHashCode =
-      if (isWhole && (precision - scale) < BigDecimal.maximumHashScale) toBigInt.hashCode
-      else if (isDecimalDouble) doubleValue.##
+      if (isWhole && (precision - scale) < BigDecimal.maximumHashScale) toBigInt().hashCode()
+      else if (isDecimalDouble) doubleValue().##
       else {
         val temp = bigDecimal.stripTrailingZeros
         scala.util.hashing.MurmurHash3.mixLast( temp.scaleByPowerOfTen(temp.scale).toBigInteger.hashCode, temp.scale )
@@ -434,7 +434,7 @@ extends ScalaNumber with ScalaNumericConversions with Serializable with Ordered[
    *  with large exponents.
    */
   override def hashCode(): Int = {
-    if (computedHashCode == BigDecimal.hashCodeNotComputed) computeHashCode
+    if (computedHashCode == BigDecimal.hashCodeNotComputed) computeHashCode()
     computedHashCode
   }
 
@@ -445,7 +445,7 @@ extends ScalaNumber with ScalaNumericConversions with Serializable with Ordered[
     case that: BigDecimal     => this equals that
     case that: BigInt         =>
       that.bitLength > (precision-scale-2)*BigDecimal.deci2binary &&
-      this.toBigIntExact.exists(that equals _)
+      this.toBigIntExact().exists(that equals _)
     case that: Double         =>
       !that.isInfinity && {
         val d = toDouble
@@ -653,21 +653,21 @@ extends ScalaNumber with ScalaNumericConversions with Serializable with Ordered[
    *  Note that this conversion can lose information about the overall magnitude of the
    *  BigDecimal value as well as return a result with the opposite sign.
    */
-  override def byteValue   = intValue.toByte
+  override def byteValue   = intValue().toByte
 
   /** Converts this BigDecimal to a Short.
    *  If the BigDecimal is too big to fit in a Short, only the low-order 16 bits are returned.
    *  Note that this conversion can lose information about the overall magnitude of the
    *  BigDecimal value as well as return a result with the opposite sign.
    */
-  override def shortValue  = intValue.toShort
+  override def shortValue  = intValue().toShort
 
   /** Converts this BigDecimal to a Char.
    *  If the BigDecimal is too big to fit in a Char, only the low-order 16 bits are returned.
    *  Note that this conversion can lose information about the overall magnitude of the
    *  BigDecimal value and that it always returns a positive result.
    */
-  def charValue   = intValue.toChar
+  def charValue   = intValue().toChar
 
   /** Converts this BigDecimal to an Int.
    *  If the BigDecimal is too big to fit in an Int, only the low-order 32 bits

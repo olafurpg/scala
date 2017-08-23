@@ -35,10 +35,10 @@ object Numeric {
     def rem(x: BigInt, y: BigInt): BigInt = x % y
     def negate(x: BigInt): BigInt = -x
     def fromInt(x: Int): BigInt = BigInt(x)
-    def toInt(x: BigInt): Int = x.intValue
-    def toLong(x: BigInt): Long = x.longValue
-    def toFloat(x: BigInt): Float = x.floatValue
-    def toDouble(x: BigInt): Double = x.doubleValue
+    def toInt(x: BigInt): Int = x.intValue()
+    def toLong(x: BigInt): Long = x.longValue()
+    def toFloat(x: BigInt): Float = x.floatValue()
+    def toDouble(x: BigInt): Double = x.doubleValue()
   }
   implicit object BigIntIsIntegral extends BigIntIsIntegral with Ordering.BigIntOrdering
 
@@ -134,8 +134,8 @@ object Numeric {
     def div(x: Float, y: Float): Float = x / y
   }
   trait FloatAsIfIntegral extends FloatIsConflicted with Integral[Float] {
-    def quot(x: Float, y: Float): Float = (BigDecimal(x) quot BigDecimal(y)).floatValue
-    def rem(x: Float, y: Float): Float = (BigDecimal(x) remainder BigDecimal(y)).floatValue
+    def quot(x: Float, y: Float): Float = (BigDecimal(x) quot BigDecimal(y)).floatValue()
+    def rem(x: Float, y: Float): Float = (BigDecimal(x) remainder BigDecimal(y)).floatValue()
   }
   implicit object FloatIsFractional extends FloatIsFractional with Ordering.FloatOrdering
   object FloatAsIfIntegral extends FloatAsIfIntegral with Ordering.FloatOrdering {
@@ -158,8 +158,8 @@ object Numeric {
     def div(x: Double, y: Double): Double = x / y
   }
   trait DoubleAsIfIntegral extends DoubleIsConflicted with Integral[Double] {
-    def quot(x: Double, y: Double): Double = (BigDecimal(x) quot BigDecimal(y)).doubleValue
-    def rem(x: Double, y: Double): Double = (BigDecimal(x) remainder BigDecimal(y)).doubleValue
+    def quot(x: Double, y: Double): Double = (BigDecimal(x) quot BigDecimal(y)).doubleValue()
+    def rem(x: Double, y: Double): Double = (BigDecimal(x) remainder BigDecimal(y)).doubleValue()
   }
 
   trait BigDecimalIsConflicted extends Numeric[BigDecimal] {
@@ -168,10 +168,10 @@ object Numeric {
     def times(x: BigDecimal, y: BigDecimal): BigDecimal = x * y
     def negate(x: BigDecimal): BigDecimal = -x
     def fromInt(x: Int): BigDecimal = BigDecimal(x)
-    def toInt(x: BigDecimal): Int = x.intValue
-    def toLong(x: BigDecimal): Long = x.longValue
-    def toFloat(x: BigDecimal): Float = x.floatValue
-    def toDouble(x: BigDecimal): Double = x.doubleValue
+    def toInt(x: BigDecimal): Int = x.intValue()
+    def toLong(x: BigDecimal): Long = x.longValue()
+    def toFloat(x: BigDecimal): Float = x.floatValue()
+    def toDouble(x: BigDecimal): Double = x.doubleValue()
   }
 
   trait BigDecimalIsFractional extends BigDecimalIsConflicted with Fractional[BigDecimal] {

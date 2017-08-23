@@ -660,7 +660,7 @@ self: ParIterableLike[T, Repr, Sequential] =>
     val it = splitter
     var left = n
     while (left > 0) {
-      cb += it.next
+      cb += it.next()
       left -= 1
     }
     cb.resultWithTaskSupport
@@ -676,7 +676,7 @@ self: ParIterableLike[T, Repr, Sequential] =>
     val it = splitter drop n
     val cb = newCombiner
     cb.sizeHint(size - n)
-    while (it.hasNext) cb += it.next
+    while (it.hasNext) cb += it.next()
     cb.resultWithTaskSupport
   }
 
@@ -692,7 +692,7 @@ self: ParIterableLike[T, Repr, Sequential] =>
     var left = until - from
     val it = splitter drop from
     while (left > 0) {
-      cb += it.next
+      cb += it.next()
       left -= 1
     }
     cb.resultWithTaskSupport
@@ -1336,7 +1336,7 @@ self: ParIterableLike[T, Repr, Sequential] =>
     @volatile var result: Result = null
     def leaf(prev: Option[Combiner[U, That]]) {
       result = cbf()
-      while (pit.hasNext) result += pit.next
+      while (pit.hasNext) result += pit.next()
     }
     protected[this] def newSubtask(p: IterableSplitter[T]) = new ToParCollection[U, That](cbf, p)
     override def merge(that: ToParCollection[U, That]) = result = result combine that.result
@@ -1347,7 +1347,7 @@ self: ParIterableLike[T, Repr, Sequential] =>
     @volatile var result: Result = null
     def leaf(prev: Option[Combiner[(K, V), That]]) {
       result = cbf()
-      while (pit.hasNext) result += pit.next
+      while (pit.hasNext) result += pit.next()
     }
     protected[this] def newSubtask(p: IterableSplitter[T]) = new ToParMap[K, V, That](cbf, p)(ev)
     override def merge(that: ToParMap[K, V, That]) = result = result combine that.result
